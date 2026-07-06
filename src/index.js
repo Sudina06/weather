@@ -20,25 +20,23 @@ const locBox = document.getElementById("locBox");
 const list = document.getElementById("list");
 const loading = document.getElementById("loading");
 
-searchBtn.addEventListener("click",()=>{
-    userLoc.classList.toggle("hidden");
-    dataFetch(userLoc.value);
-    userLoc.value="";
-    list.classList.toggle("hidden")
-})
+searchBtn.addEventListener("click", () => {
+  userLoc.classList.toggle("hidden");
+  dataFetch(userLoc.value);
+  userLoc.value = "";
+  list.classList.toggle("hidden");
+});
 
-
-
-const dataFetch = async (location)=>{
-    if(!location){
-        return;
-    }
-    loading.classList.toggle("hidden");
-    try{
-    const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=7`,
+const dataFetch = async (location) => {
+  if (!location) {
+    return;
+  }
+  loading.classList.toggle("hidden");
+  try {
+    const res = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=7`,
     ).then((r) => r.json());
-  
-    
+
     day.textContent = new Date().toDateString();
     place.textContent = res.location.name;
     country.textContent = res.location.country;
@@ -52,12 +50,13 @@ const dataFetch = async (location)=>{
     visibility.textContent = res.current.vis_km;
 
     const cast = res.forecast.forecastday;
-    forecasts.innerHTML="";
-    cast.forEach( (fc) =>{
-        const div = document.createElement("div");
-        div.classList=("bg-gray-600 rounded-2xl  flex items-center px-4 justify-between");
-        div.innerHTML = `<div>
-                <p class="text-xl"> ${new Date(fc.date).toLocaleDateString("en-US" , {weekday:"long"})} </p>
+    forecasts.innerHTML = "";
+    cast.forEach((fc) => {
+      const div = document.createElement("div");
+      div.classList =
+        "bg-gray-600 rounded-2xl  flex items-center px-4 justify-between";
+      div.innerHTML = `<div>
+                <p class="text-xl"> ${new Date(fc.date).toLocaleDateString("en-US", { weekday: "long" })} </p>
                 <p class="text-gray-400">${fc.day.condition.text} </p>
                 </div>
                 <div>
@@ -65,55 +64,49 @@ const dataFetch = async (location)=>{
                 </div>
                 <div>
                     <p class="text-xl font-semibold">${fc.day.avgtemp_c}℃</p>
-                </div>`
-            
-            forecasts.append(div)    
-    })
-    uv.textContent = res.current.uv
-    if(res.current.uv<=2){
-        index.textContent = "low";
-    }
-    else if(res.current.uv<=5){
-        index.textContent = "Moderate"
-    }
-    else{
-        index.textContent = "High";
-    }
-    }
-    catch(err){
-        console.log(err);
-    }
-    finally{
-        loading.classList.toggle("hidden");
-    }
+                </div>`;
 
-    
-}
-dataFetch("Pokhara")
+      forecasts.append(div);
+    });
+    uv.textContent = res.current.uv;
+    if (res.current.uv <= 2) {
+      index.textContent = "low";
+    } else if (res.current.uv <= 5) {
+      index.textContent = "Moderate";
+    } else {
+      index.textContent = "High";
+    }
+  } catch (err) {
+    console.log(err);
+  } finally {
+    loading.classList.toggle("hidden");
+  }
+};
+dataFetch("Pokhara");
 
-
-const fetchLoc = async(loc)=>{
-    const res = await fetch(`https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${loc}`,).then((r)=>r.json());
-    if(!loc){
-    list.innerHTML="";
+const fetchLoc = async (loc) => {
+  const res = await fetch(
+    `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${loc}`,
+  ).then((r) => r.json());
+  if (!loc) {
+    list.innerHTML = "";
     return;
-    }
-    res.forEach((loca)=>{
-        const li = document.createElement("li");
-        li.textContent = loca.name;
-        li.classList = "p-2 hover:bg-gray  w-full hover:cursor-pointer hover:bg-gray-700 hover:scale-105 transition duration-300";
-        list.appendChild(li);
-        li.addEventListener("click",()=>{
-            dataFetch(loca.name);
-            list.innerHTML = "";
-        })
-    })
-    
-}
-userLoc.addEventListener("input",()=>{
-    fetchLoc(userLoc.value);
-})
-
-
-
-
+  }
+  res.forEach((loca) => {
+    const li = document.createElement("li");
+    li.textContent = loca.name;
+    li.classList =
+      "p-2 hover:bg-gray  w-full hover:cursor-pointer hover:bg-gray-700 hover:scale-105 transition duration-300";
+    list.appendChild(li);
+    li.addEventListener("click", () => {
+      dataFetch(loca.name);
+      list.innerHTML = "";
+      userLoc.value = "";
+      userLoc.classList.toggle("hidden");
+      list.classList.toggle("hidden");
+    });
+  });
+};
+userLoc.addEventListener("input", () => {
+  fetchLoc(userLoc.value);
+});
