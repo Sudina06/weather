@@ -83,7 +83,7 @@ dataFetch("Pokhara")
 
 
 const fetchLoc = async(loc)=>{
-    const res = await fetch(`httpss://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${loc}`,).then((r)=>r.json());
+    const res = await fetch(`https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${loc}`,).then((r)=>r.json());
     if(!loc){
     list.innerHTML="";
     return;
