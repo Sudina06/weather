@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css" />
+  </head>
+  <body
+    class="text-white min-h-screen w-full bg-linear-to-br from-blue-950 to-blue-800 py-3 px-6 flex flex-col sm:flex-row gap-4"
+  >
+    <!-- <div id="loading" class="w-full h-screen bg-white flex justify-center absolute items-center">
+        <div class="size-20 border-4 border-blue-500 animate-spin rounded-full border-t-transparent">
+
+        </div>
+    </div> -->
+
+    <div class="text-white bg-gray-800 flex-col rounded-2xl py-5 px-5 flex-1">
+      <div class="flex w-full justify-between">
+        <div>
+          <p id="day" class="text-[0.7rem]">Thursday, 29 may</p>
+          <p class="text-xl font-semibold">
+            <span id="place"> Kathmandu</span> , <span id="country">Nepal</span>
+          </p>
+        </div>
+        <div class="flex justify-center relative items-center">
+          <button
+            id="searchBtn"
+            class="bg-gray-500 rounded-xl text-sm p-2 hover:bg-gray-400 transition duration-300"
+          >
+            Search..
+          </button>
+          <div class=" w-42 left-0 top-11 absolute">
+            <input
+              type="text"
+              id="userLoc"
+              placeholder="Type..."
+              class="py-1 text-black px-2 w-full  bg-white rounded-xl outline-none focus:border-2 focus:border-gray-900 hidden"
+            />
+            <ul id="list" class="bg-gray-800 border border-gray-500 rounded-2xl w-full overflow-y-auto hidden">
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-between items-center">
+        <div class="py-12">
+          <p class="text-6xl font-bold">
+            <span id="temp">24</span><span>℃</span>
+          </p>
+          <p id="weather" class="text-xl py-1">Partly Cloudy</p>
+          <p class="text-gray-400 text-[0.7rem]">
+            Feels like <span id="feelsLike">26</span>℃
+          </p>
+        </div>
+        <div>
+          <img id="img" src="" class="size-30" alt="" />
+        </div>
+      </div>
+      <div class="flex py-3 flex-col sm:flex-row gap-3">
+        <div class="bg-gray-600 rounded-2xl px-5 py-5 grow">
+          <p class="text-gray-400">Humidity</p>
+          <p class="text-2xl font-semibold"><span id="humidity">73</span>%</p>
+        </div>
+        <div class="bg-gray-600 rounded-2xl px-5 py-5 grow">
+          <p class="text-gray-400">Wind</p>
+          <p class="text-2xl font-semibold"><span id="wind">23</span> km/h</p>
+        </div>
+        <div class="bg-gray-600 rounded-2xl px-5 py-5 grow">
+          <p class="text-gray-400">Pressure</p>
+          <p class="text-2xl font-semibold"><span id="pressure">34</span> mb</p>
+        </div>
+        <div class="bg-gray-600 rounded-2xl px-5 py-5 grow">
+          <p class="text-gray-400">Visibility</p>
+          <p class="text-2xl font-semibold">
+            <span id="visibility">dw</span> km
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 text-white rounded-2xl p-7 w-auto sm:w-96 shrink">
+      <div class="flex justify-between items-center gap-8 mb-5">
+        <p class="text-xl font-semibold">7 Day Forecast</p>
+        <p>Weekly</p>
+      </div>
+
+      <div id="forecasts" class="flex flex-col gap-3"></div>
+      <div
+        class="bg-linear-to-r from-blue-400 to-indigo-800 rounded-2xl p-4 mt-3"
+      >
+        <p class="font-semibold text-xl mb-2">UV Index</p>
+        <p>
+          <span id="uv" class="text-3xl font-bold">6.4</span
+          ><span id="index" class="text-sm font-normal">Moderate</span>
+        </p>
+      </div>
+    </div>
+
+    <script src="./src/index.js"></script>
+  </body>
+</html>
