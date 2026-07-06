@@ -36,13 +36,14 @@ const dataFetch = async (location)=>{
     
     const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=7`,
     ).then((r) => r.json());
-
+  
+    
     day.textContent = new Date().toDateString();
     place.textContent = res.location.name;
     country.textContent = res.location.country;
     temp.textContent = res.current.temp_c;
     weather.textContent = res.current.condition.text;
-    feelsLike.textContent = res.current.feelsLike_c;
+    feelsLike.textContent = res.current.feelslike_c;
     img.src = res.current.condition.icon;
     humidity.textContent = res.current.humidity;
     wind.textContent = res.current.wind_kph;
