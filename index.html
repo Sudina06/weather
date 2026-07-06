@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="./src/output.css" />
   </head>
   <body
-    class="text-white min-h-screen w-full bg-linear-to-br from-blue-950 to-blue-800 py-3 px-6 flex flex-col sm:flex-row gap-4"
+    class="text-white min-h-screen  w-full bg-linear-to-br from-blue-950 to-blue-800 py-3 px-6 flex flex-col sm:flex-row gap-4"
   >
-    <!-- <div id="loading" class="w-full h-screen bg-white flex justify-center absolute items-center">
+    <div id="loading" class="z-50 hidden w-[calc(100vw-4rem)] h-full bg-gray-900/70 backdrop-blur-xl flex justify-center absolute items-center">
         <div class="size-20 border-4 border-blue-500 animate-spin rounded-full border-t-transparent">
 
         </div>
-    </div> -->
+    </div>
 
     <div class="text-white bg-gray-800 flex-col rounded-2xl py-5 px-5 flex-1">
       <div class="flex w-full justify-between">
@@ -30,14 +30,14 @@
           >
             Search..
           </button>
-          <div class=" w-42 left-0 top-11 absolute">
+          <div class=" w-42 sm:left-0 right-0 top-11 absolute">
             <input
               type="text"
               id="userLoc"
               placeholder="Type..."
               class="py-1 text-black px-2 w-full  bg-white rounded-xl outline-none focus:border-2 focus:border-gray-900 hidden"
             />
-            <ul id="list" class="bg-gray-800 border border-gray-500 rounded-2xl w-full overflow-y-auto hidden">
+            <ul id="list" class="bg-gray-800 max-h-56 border border-gray-500 rounded-2xl w-full overflow-y-auto hidden">
               
             </ul>
           </div>

@@ -18,6 +18,7 @@ const uv = document.getElementById("uv");
 const index = document.getElementById("index");
 const locBox = document.getElementById("locBox");
 const list = document.getElementById("list");
+const loading = document.getElementById("loading");
 
 searchBtn.addEventListener("click",()=>{
     userLoc.classList.toggle("hidden");
@@ -29,11 +30,11 @@ searchBtn.addEventListener("click",()=>{
 
 
 const dataFetch = async (location)=>{
-
     if(!location){
         return;
     }
-    
+    loading.classList.toggle("hidden");
+    try{
     const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=7`,
     ).then((r) => r.json());
   
@@ -51,7 +52,7 @@ const dataFetch = async (location)=>{
     visibility.textContent = res.current.vis_km;
 
     const cast = res.forecast.forecastday;
-
+    forecasts.innerHTML="";
     cast.forEach( (fc) =>{
         const div = document.createElement("div");
         div.classList=("bg-gray-600 rounded-2xl  flex items-center px-4 justify-between");
@@ -78,7 +79,15 @@ const dataFetch = async (location)=>{
     else{
         index.textContent = "High";
     }
+    }
+    catch(err){
+        console.log(err);
+    }
+    finally{
+        loading.classList.toggle("hidden");
+    }
 
+    
 }
 dataFetch("Pokhara")
 
